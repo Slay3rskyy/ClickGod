@@ -65,7 +65,7 @@ public class TrueShop extends JPanel {
 		//Burray[buttonIndex].setBackground(new Color(100,100,100));
 		add(Burray[buttonIndex]);
 		Burray[12].addActionListener(actionEvent -> {
-			Main.mainPanel.setVisible(true);
+			mainRef.getMainPanel().setVisible(true);
 			this.setVisible(false);
 		});
 

@@ -15,7 +15,6 @@ public class MyButton extends JButton {
 		button.setBounds(x, y, size.width, size.height);
 		button.setForeground(new Color(200, 200, 200));
 		button.setBorderPainted(false);
-		button.setBorder(null);
 		button.setFocusPainted(false);
 		button.setRolloverEnabled(false);
 		button.setFocusable(false);
