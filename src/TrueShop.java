@@ -29,14 +29,18 @@ public class TrueShop extends JPanel {
 	private double boost1 = 1;
 	private double boost2 = 0;
 	private double boost3 = 1;
-	TrueShop(Main mainRef) {
+	TrueShop() {
 		super();
-		
+	}
+
+	static TrueShop makeShop(Main mainRef,MainPanel mainPanel){
+		TrueShop shop = new TrueShop();
+
 		MyButton[] Burray = new MyButton[16];
 		String[] nameArray = {"Click multiplier", "Click adder", "Click power", "AutoClicker", "First Booster", "Second Booster", "", "", "", "", "", "", "", "", ""};
-		setBackground(new Color(45, 45, 45));
-		setBounds(0, 0, 1960, 1080);
-		setLayout(null);
+		shop.setBackground(new Color(45, 45, 45));
+		shop.setBounds(0, 0, 1960, 1080);
+		shop.setLayout(null);
 		double[] costArray = {100, 10, 2500, 10000};
 		Dimension buttonDim = new Dimension();
 		buttonDim.setSize(400, 200);
@@ -54,7 +58,7 @@ public class TrueShop extends JPanel {
 
 				Burray[buttonIndex].setFont(new Font("Monospace", Font.PLAIN, 30));
 				//Burray[buttonIndex].setBackground(new Color(100,100,100));
-				add(Burray[buttonIndex]);
+				shop.add(Burray[buttonIndex]);
 				Burray[buttonIndex].setFocusable(false);
 				buttonIndex++;
 			}
@@ -63,16 +67,16 @@ public class TrueShop extends JPanel {
 		Burray[buttonIndex].setText("Main Menu");
 		Burray[buttonIndex].setFont(new Font("Monospace", Font.PLAIN, 30));
 		//Burray[buttonIndex].setBackground(new Color(100,100,100));
-		add(Burray[buttonIndex]);
+		shop.add(Burray[buttonIndex]);
 		Burray[12].addActionListener(actionEvent -> {
 			mainRef.getMainPanel().setVisible(true);
-			this.setVisible(false);
+			shop.setVisible(false);
 		});
 
 		Burray[0].addActionListener(actionEvent -> {
 			if (mainRef.getPoints() > costArray[0]) {
 
-				boost1 = boost1 * 1.58;
+				shop.boost1 = shop.boost1 * 1.58;
 				mainRef.setPoints(mainRef.getPoints()-costArray[0]);
 				costArray[0] = costArray[0] * 4;
 				//System.out.println(Math.pow((Main.clickPower + boost2) * boost1, boost3));
@@ -84,7 +88,7 @@ public class TrueShop extends JPanel {
 
 		Burray[1].addActionListener(actionEvent -> {
 			if (mainRef.getPoints() > costArray[1]) {
-				boost2 = boost2 + 1;
+				shop.boost2 = shop.boost2 + 1;
 				mainRef.setPoints(mainRef.getPoints() - costArray[1]);
 				costArray[1] *= 2.5;
 			} else {
@@ -95,14 +99,13 @@ public class TrueShop extends JPanel {
 
 		Burray[2].addActionListener(actionEvent -> {
 			if (mainRef.getPoints() > costArray[2]) {
-				boost3 = boost3 + 0.01;
+				shop.boost3 = shop.boost3 + 0.01;
 				mainRef.setPoints(mainRef.getPoints()-costArray[2]);
 				costArray[2] *= 25;
 			} else {
 				System.out.println(costArray[3]);
 			}
 		});
-
-
+		return shop;
 	}
 }

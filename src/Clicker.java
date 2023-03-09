@@ -4,7 +4,7 @@ import java.awt.*;
 public class Clicker extends JButton {
 
 
-	static Clicker clickerMaker(Main main,TrueShop shop, JLabel gold,int x, int y){
+	static Clicker clickerMake(Main main,TrueShop shop, JLabel gold,int x, int y){
 		Dimension clickerDim = new Dimension(500,500);
 		Clicker clicker = new Clicker();
 		clicker.setBounds(x, y, clickerDim.width, clickerDim.height);

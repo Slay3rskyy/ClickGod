@@ -3,7 +3,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame{
-	static MainFrame mainFrameMaker(){
+	static MainFrame mainFrameMake(){
 		MainFrame mainFrame = new MainFrame();
 
 		//settings from Jframe set to MainFrame
