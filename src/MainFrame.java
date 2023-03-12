@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -8,6 +9,7 @@ public class MainFrame extends JFrame{
 
 		//settings from Jframe set to MainFrame
 		mainFrame.setIconImage(new ImageIcon("UmmIconIGuess.png").getImage());
+		mainFrame.setBackground(new Color(85,85,85));
 		mainFrame.setSize(1960, 1080);
 		mainFrame.setUndecorated(true);
 		mainFrame.setLayout(null);
