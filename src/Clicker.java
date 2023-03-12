@@ -13,9 +13,9 @@ public class Clicker extends JButton {
 		clicker.setFocusPainted(false);
 		clicker.setRolloverEnabled(false);
 		clicker.setFocusable(false);
-		clicker.setIcon(new ImageIcon("C:\\Users\\Mateusz\\Documents\\graphics for projects\\FunkyIcon.png"));
+		clicker.setIcon(new ImageIcon("FunkyIcon.png"));
 		clicker.setModel(new DefaultButtonModel());
-		clicker.setPressedIcon(new ImageIcon("C:\\Users\\Mateusz\\Documents\\graphics for projects\\FunkyIconPress.png"));
+		clicker.setPressedIcon(new ImageIcon("FunkyIconPress.png"));
 		clicker.clickLogic(main, shop, gold);
 
 		return clicker;

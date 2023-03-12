@@ -23,6 +23,7 @@ public class Main {
 	private double points = 0;
 
 	public static void main(String[] args) {
+
 		Main main = new Main();
 		Dimension size = new Dimension(200,100);
 		Dimension clickerDim = new Dimension(500,500);

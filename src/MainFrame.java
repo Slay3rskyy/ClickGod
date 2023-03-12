@@ -7,7 +7,7 @@ public class MainFrame extends JFrame{
 		MainFrame mainFrame = new MainFrame();
 
 		//settings from Jframe set to MainFrame
-		mainFrame.setIconImage(new ImageIcon("C:\\Users\\Mateusz\\Documents\\graphics for projects\\UmmIconIGuess.png").getImage());
+		mainFrame.setIconImage(new ImageIcon("UmmIconIGuess.png").getImage());
 		mainFrame.setSize(1960, 1080);
 		mainFrame.setUndecorated(true);
 		mainFrame.setLayout(null);

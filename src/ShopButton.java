@@ -11,7 +11,7 @@ public class ShopButton extends JButton{
 		shopButton.setFocusPainted(false);
 		shopButton.setFocusable(false);
 		shopButton.setBorder(null);
-		shopButton.setIcon(new ImageIcon("C:\\Users\\Mateusz\\Documents\\graphics for projects\\Ramka_2.png"));
+		shopButton.setIcon(new ImageIcon("Ramka_2.png"));
 		shopButton.setContentAreaFilled(false);
 		shopButton.setBorder(BorderFactory.createEmptyBorder());
 
