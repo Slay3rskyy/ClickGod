@@ -8,7 +8,7 @@ application {
 }
 
 group 'com.github.slay3rskyy'
-version '1.0-SNAPSHOT'
+version 'v 0.2.3.2'
 
 repositories {
     mavenCentral()
