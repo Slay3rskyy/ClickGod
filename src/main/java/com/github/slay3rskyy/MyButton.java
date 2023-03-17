@@ -9,11 +9,6 @@ public class MyButton extends JButton {
 
 	public static MyButton makeButton(Dimension size, int x, int y) {
 		MyButton button = new MyButton();
-		makeButton(button,size,x,y);
-		return button;
-	}
-	public static MyButton makeButton(MyButton button, Dimension size, int x, int y){
-
 		button.setBounds(x, y, size.width, size.height);
 		button.setForeground(new Color(200, 200, 200));
 		button.setBorderPainted(false);

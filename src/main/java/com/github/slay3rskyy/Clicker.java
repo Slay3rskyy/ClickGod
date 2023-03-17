@@ -1,14 +1,13 @@
 package com.github.slay3rskyy;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 
 public class Clicker extends JButton {
 
 
-	static Clicker clickerMake(Main main, TrueShop shop, JLabel gold, int x, int y){
-		Dimension clickerDim = new Dimension(500,500);
+	static Clicker clickerMake(Main main, TrueShop shop, JLabel gold, int x, int y,int width, int height){
+		Dimension clickerDim = new Dimension(width, height);
 		Clicker clicker = new Clicker();
 		clicker.setBounds(x, y, clickerDim.width, clickerDim.height);
 		clicker.setBorderPainted(false);

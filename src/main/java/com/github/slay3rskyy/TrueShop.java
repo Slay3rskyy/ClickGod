@@ -35,19 +35,20 @@ public class TrueShop extends JPanel {
 		super();
 	}
 
-	static TrueShop makeShop(Main mainRef, MainPanel mainPanel){
+	static TrueShop makeShop(Main mainRef){
 		TrueShop shop = new TrueShop();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		MyLabel[] labelList = new MyLabel[16];
 		MyButton[] Burray = new MyButton[16];
 		String[] nameArray = {"Click multiplier", "Click adder", "Click power", "AutoClicker", "First Booster", "Second Booster", "", "", "", "", "", "", "", "", ""};
 		shop.setBackground(new Color(45, 45, 45));
-		shop.setBounds(0, 0, 1960, 1080);
+		shop.setBounds(0, 0, screenSize.width, screenSize.height);
 		shop.setLayout(null);
 		double[] costArray = {100, 10, 2500, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		Dimension buttonDim = new Dimension();
-		buttonDim.setSize(400, 200);
-		int y = 980 / 4;
-		int x = 1960 / 4;
+		buttonDim.setSize(screenSize.width / 4 - 50, screenSize.height / 4 - 50);
+		int y = screenSize.height / 4;
+		int x = screenSize.width / 4;
 		int buttonIndex = 0;
 		for (int i = 0; i <= 3; i++) {
 			for (int j = 0; j < 3; j++) {

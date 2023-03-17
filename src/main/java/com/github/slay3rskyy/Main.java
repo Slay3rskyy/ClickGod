@@ -39,9 +39,9 @@ public class Main {
 
 
 		MainFrame mainFrame = MainFrame.mainFrameMake();
-		TrueShop shop = TrueShop.makeShop(main,main.mainPanel);
+		TrueShop shop = TrueShop.makeShop(main);
 		MyButton prestige = MyButton.makeButton(size,screenSize.width/3,screenSize.height/2);
-		Clicker clicker = Clicker.clickerMake(main,shop,gold,(screenSize.width-clickerDim.width)/2 , (screenSize.height-clickerDim.height)/2);
+		Clicker clicker = Clicker.clickerMake(main,shop,gold,(screenSize.width-clickerDim.width)/2 , (screenSize.height-clickerDim.height)/2,clickerDim.width,clickerDim.height);
 		ShopButton shopButton = ShopButton.makeShopButton(main,mainFrame,shop,(screenSize.width-size.width)/2,screenSize.height-size.height, size);
 
 		main.setMainPanel(MainPanel.makeMainPanel(gold,shopButton,new Color(85,85,85), clicker,0,0 , screenSize));
