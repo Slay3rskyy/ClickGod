@@ -11,6 +11,7 @@ public class MainFrame extends JFrame{
 
 		//settings from Jframe set to MainFrame
 		mainFrame.setIconImage(new ImageIcon(Utils.load("UmmIconIGuess.png")).getImage());
+		mainFrame.setResizable(true);
 		mainFrame.setBackground(new Color(85,85,85));
 		mainFrame.setSize(1960, 1080);
 		mainFrame.setUndecorated(true);
@@ -34,11 +35,11 @@ public class MainFrame extends JFrame{
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ESCAPE)
 				{
+					System.out.println("exit text");
 					System.exit(0);
 				}
 			}
 		});
-
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		return mainFrame;

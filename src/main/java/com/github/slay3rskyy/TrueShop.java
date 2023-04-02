@@ -8,9 +8,7 @@ public class TrueShop extends JPanel {
 		return boost1;
 	}
 
-	public void setBoost1(double boost1) {
-		this.boost1 = boost1;
-	}
+	public void setBoost1(double boost1) {this.boost1 = boost1;}
 
 	public double getBoost2() {
 		return boost2;
@@ -60,12 +58,13 @@ public class TrueShop extends JPanel {
 				}
 
 				Burray[buttonIndex].setFont(new Font("Monospace", Font.PLAIN, 30));
+				Burray[buttonIndex].setLayout(null);
 				//Burray[buttonIndex].setBackground(new Color(100,100,100));
 				shop.add(Burray[buttonIndex]);
 				Burray[buttonIndex].setFocusable(false);
-				labelList[buttonIndex] = new MyLabel(Double.toString(costArray[buttonIndex]));
+				labelList[buttonIndex] = new MyLabel(String.format("cost \n %.0f",costArray[buttonIndex]));
+				labelList[buttonIndex].setBounds(buttonDim.width/2 - labelList[buttonIndex].getLength()/2,buttonDim.height - 100, labelList[buttonIndex].getLength(),100);
 				Burray[buttonIndex].add(labelList[buttonIndex]);
-				labelList[buttonIndex].setBottomCenter(Burray[buttonIndex]);
 				buttonIndex++;
 			}
 		}
@@ -78,28 +77,31 @@ public class TrueShop extends JPanel {
 			mainRef.getMainPanel().setVisible(true);
 			shop.setVisible(false);
 		});
-
+//
+//		List
+//		for ( var r:
+//			 ) {
+//
+//		}
 		Burray[0].addActionListener(actionEvent -> {
 			if (mainRef.getPoints() >= costArray[0]) {
 
-				shop.boost1 = shop.boost1 * 1.58;
+				shop.boost1 = shop.boost1 * 1.5;
 				mainRef.setPoints(mainRef.getPoints()-costArray[0]);
 				costArray[0] = costArray[0] * 4;
-				labelList[0].setText(Double.toString(costArray[0]));
+				labelList[0].setText(Utils.formatGold(costArray[0]));
 				//System.out.println(Math.pow((Main.clickPower + boost2) * boost1, boost3));
 			} else {
 				//System.out.println(Math.pow((boost2 + Main.clickPower) * boost1, boost3));
 				System.out.println(costArray[0]);
 			}
 		});
-
 		Burray[1].addActionListener(actionEvent -> {
 			if (mainRef.getPoints() >= costArray[1]) {
 				shop.boost2 = shop.boost2 + 1;
 				mainRef.setPoints(mainRef.getPoints() - costArray[1]);
 				costArray[1] *= 2.5;
-				labelList[1].setText(String.format("cost %.2f",costArray[1]));
-
+				labelList[1].setText(Utils.formatGold(costArray[1]));
 			} else {
 				System.out.println(costArray[1]);
 			}
@@ -108,14 +110,15 @@ public class TrueShop extends JPanel {
 
 		Burray[2].addActionListener(actionEvent -> {
 			if (mainRef.getPoints() >= costArray[2]) {
-				shop.boost3 = shop.boost3 + 0.01;
+				shop.boost3 *= 10;
 				mainRef.setPoints(mainRef.getPoints()-costArray[2]);
-				costArray[2] *= 25;
-				labelList[2].setText(Double.toString(costArray[2]));
+				costArray[2] *= 100;
+				labelList[2].setText(Utils.formatGold(costArray[2]));
 			} else {
 				System.out.println(costArray[3]);
 			}
 		});
+
 		return shop;
 	}
 }

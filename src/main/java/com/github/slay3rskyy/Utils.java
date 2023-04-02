@@ -15,5 +15,7 @@ public class Utils {
 			throw new RuntimeException(e);
 		}
 	}
-
+	public static String formatGold(double gold) {
+		return gold >= 1e6 ? String.format("%.3E", gold) : String.format("%d", (int) gold);
+	}
 }
