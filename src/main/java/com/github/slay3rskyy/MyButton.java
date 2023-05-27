@@ -26,9 +26,22 @@ public class MyButton extends JButton {
 //
 //	}
 
+	public void shopButtonLogic (TrueShop shop, Main mainRef, int index, double costMultiplier, MyLabel gold){
 
+		this.addActionListener(e -> {
+
+			if(mainRef.getPoints() >= shop.getCostArray(index)){
+				mainRef.setPoints(mainRef.getPoints() - shop.getCostArray(index));
+				shop.setCostArray(shop.getCostArray(index)*costMultiplier,index);
+				shop.getLabelList(index).setText(Utils.formatGold(shop.getCostArray(index)));
+				gold.setText(String.format("Gold: %.3E",mainRef.getPoints()));
+			}
+
+		});
+	}
 	public void ChangeColor(Color baseColor, Color colorChangeOnClick){
 		this.setBackground(baseColor);
+
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

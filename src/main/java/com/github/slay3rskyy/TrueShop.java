@@ -2,6 +2,8 @@ package com.github.slay3rskyy;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TrueShop extends JPanel {
 	public double getBoost1() {
@@ -26,28 +28,45 @@ public class TrueShop extends JPanel {
 		this.boost3 = boost3;
 	}
 
+	public double getCostArray(int index) {return costArray[index];}
+
+	public void setCostArray(double newCost,int index) {costArray[index] = newCost;}
+
+	public MyLabel getLabelList(int index){return labelList[index];}
+
+	public void setLabelList(MyLabel label,int index){labelList[index] = label;}
+
+	public int getAutoClickAmmount() {return autoClickAmmount;}
+
+	public void setAutoClickAmmount(int autoClickAmmount) {this.autoClickAmmount = autoClickAmmount;}
+
+	private final MyLabel[] labelList = new MyLabel[16];
+	private final double[] costArray = {100, 10, 2500, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	private double boost1 = 1;
 	private double boost2 = 0;
 	private double boost3 = 1;
+	private int autoClickAmmount = 0;
+
 	TrueShop() {
 		super();
 	}
 
-	static TrueShop makeShop(Main mainRef){
+	static TrueShop makeShop(Main mainRef, MyLabel gold){
 		TrueShop shop = new TrueShop();
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		MyLabel[] labelList = new MyLabel[16];
+		//MyLabel[] labelList = new MyLabel[16];
 		MyButton[] Burray = new MyButton[16];
 		String[] nameArray = {"Click multiplier", "Click adder", "Click power", "AutoClicker", "First Booster", "Second Booster", "", "", "", "", "", "", "", "", ""};
 		shop.setBackground(new Color(45, 45, 45));
 		shop.setBounds(0, 0, screenSize.width, screenSize.height);
 		shop.setLayout(null);
-		double[] costArray = {100, 10, 2500, 10000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
 		Dimension buttonDim = new Dimension();
 		buttonDim.setSize(screenSize.width / 4 - 50, screenSize.height / 4 - 50);
 		int y = screenSize.height / 4;
 		int x = screenSize.width / 4;
 		int buttonIndex = 0;
+
 		for (int i = 0; i <= 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				Burray[buttonIndex] = MyButton.makeButton(buttonDim, x * j + 25, y * i + 25);
@@ -62,10 +81,11 @@ public class TrueShop extends JPanel {
 				//Burray[buttonIndex].setBackground(new Color(100,100,100));
 				shop.add(Burray[buttonIndex]);
 				Burray[buttonIndex].setFocusable(false);
-				labelList[buttonIndex] = new MyLabel(String.format("cost \n %.0f",costArray[buttonIndex]));
-				labelList[buttonIndex].setBounds(buttonDim.width/2 - labelList[buttonIndex].getLength()/2,buttonDim.height - 100, labelList[buttonIndex].getLength(),100);
-				Burray[buttonIndex].add(labelList[buttonIndex]);
+				shop.setLabelList( new MyLabel(String.format("cost \n %.0f",shop.getCostArray(buttonIndex))),buttonIndex);
+				shop.getLabelList(buttonIndex).setBounds(buttonDim.width/2 - shop.getLabelList(buttonIndex).getLength()/2,buttonDim.height - 100, shop.getLabelList(buttonIndex).getLength(),100);
+				Burray[buttonIndex].add(shop.getLabelList(buttonIndex));
 				buttonIndex++;
+
 			}
 		}
 		Burray[buttonIndex] = MyButton.makeButton(buttonDim, x * 3 + 25, 25);
@@ -73,50 +93,55 @@ public class TrueShop extends JPanel {
 		Burray[buttonIndex].setFont(new Font("Monospace", Font.PLAIN, 30));
 		//Burray[buttonIndex].setBackground(new Color(100,100,100));
 		shop.add(Burray[buttonIndex]);
+
 		Burray[12].addActionListener(actionEvent -> {
 			mainRef.getMainPanel().setVisible(true);
 			shop.setVisible(false);
 		});
-//
-//		List
-//		for ( var r:
-//			 ) {
-//
-//		}
+
+		Burray[0].shopButtonLogic(shop,mainRef,0,4, gold);
 		Burray[0].addActionListener(actionEvent -> {
-			if (mainRef.getPoints() >= costArray[0]) {
+			if (mainRef.getPoints() >= shop.getCostArray(0)) {
+				shop.setBoost1(shop.getBoost1()*1.5);
 
-				shop.boost1 = shop.boost1 * 1.5;
-				mainRef.setPoints(mainRef.getPoints()-costArray[0]);
-				costArray[0] = costArray[0] * 4;
-				labelList[0].setText(Utils.formatGold(costArray[0]));
-				//System.out.println(Math.pow((Main.clickPower + boost2) * boost1, boost3));
-			} else {
-				//System.out.println(Math.pow((boost2 + Main.clickPower) * boost1, boost3));
-				System.out.println(costArray[0]);
 			}
 		});
+
+		Burray[1].shopButtonLogic(shop,mainRef,1, 2.5, gold);
 		Burray[1].addActionListener(actionEvent -> {
-			if (mainRef.getPoints() >= costArray[1]) {
-				shop.boost2 = shop.boost2 + 1;
-				mainRef.setPoints(mainRef.getPoints() - costArray[1]);
-				costArray[1] *= 2.5;
-				labelList[1].setText(Utils.formatGold(costArray[1]));
-			} else {
-				System.out.println(costArray[1]);
+			if (mainRef.getPoints() >= shop.getCostArray(1)) {
+				shop.setBoost2(shop.getBoost2()+1);
 			}
-
 		});
 
+		Burray[2].shopButtonLogic(shop, mainRef, 2,100, gold);
 		Burray[2].addActionListener(actionEvent -> {
-			if (mainRef.getPoints() >= costArray[2]) {
-				shop.boost3 *= 10;
-				mainRef.setPoints(mainRef.getPoints()-costArray[2]);
-				costArray[2] *= 100;
-				labelList[2].setText(Utils.formatGold(costArray[2]));
-			} else {
-				System.out.println(costArray[3]);
+			if (mainRef.getPoints() >= shop.getCostArray(2)) {
+				shop.setBoost3(shop.getBoost3()*10);
 			}
+		});
+
+		Burray[3].shopButtonLogic(shop,mainRef, 3,7,gold);
+		Timer timer = new Timer();
+		Burray[3].addActionListener(e -> {
+
+			if (mainRef.getPoints() >= shop.getCostArray(3)) {
+				shop.setAutoClickAmmount(shop.getAutoClickAmmount()+1);
+			}
+			if(shop.getAutoClickAmmount() == 1){
+				timer.schedule(new TimerTask() {
+					@Override
+					public void run() {
+
+						mainRef.setPoints((mainRef.getPoints() + (shop.getBoost2() + 1) * shop.getBoost1() * shop.getBoost3()));
+						gold.setText(String.format("Gold: %.3E",mainRef.getPoints()));
+						SwingUtilities.updateComponentTreeUI(mainRef.getMainPanel());
+					}
+
+				},1,shop.getAutoClickAmmount());
+
+			}
+
 		});
 
 		return shop;

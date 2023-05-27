@@ -2,8 +2,6 @@ package com.github.slay3rskyy;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Clicker extends JButton {
 
@@ -22,16 +20,15 @@ public class Clicker extends JButton {
 		clicker.setPressedIcon(new ImageIcon(Utils.load("FunkyIconPress.png")));
 		clicker.clickLogic(main, shop, gold);
 
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-
-				main.setPoints((main.getPoints() + (shop.getBoost2()+1)* shop.getBoost1()* shop.getBoost3()));
-				gold.setText(String.format("Gold: %.3E",main.getPoints()));
-				SwingUtilities.updateComponentTreeUI(main.getMainPanel());
-			}
-		}, 1, 1);
+//		timer.schedule(new TimerTask() {
+//			@Override
+//			public void run() {
+//
+//				main.setPoints((main.getPoints() + (shop.getBoost2()+1)* shop.getBoost1()* shop.getBoost3()));
+//				gold.setText(String.format("Gold: %.3E",main.getPoints()));
+//				SwingUtilities.updateComponentTreeUI(main.getMainPanel());
+//			}
+//		}, 1, 1);
 
 
 		return clicker;
@@ -39,7 +36,7 @@ public class Clicker extends JButton {
 
 	private void clickLogic(Main main, TrueShop shop, JLabel gold){
 		this.addActionListener(Click -> {
-			main.setPoints((main.getPoints() + Math.pow((shop.getBoost2() + 1) * shop.getBoost1(), shop.getBoost3())));
+			main.setPoints((main.getPoints() + (shop.getBoost2()+1)* shop.getBoost1()* shop.getBoost3()));
 			gold.setText(String.format("Gold: %.3E",main.getPoints()));
 			SwingUtilities.updateComponentTreeUI(main.getMainPanel());
 		});
